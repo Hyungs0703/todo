@@ -28,5 +28,10 @@ public class UserController {
     public UserResponseDto updateUser(@PathVariable Long id, @RequestBody UserRequestDto userRequestDto) {
         return userService.updateUser(id, userRequestDto);
     }
-
+    @ResponseStatus
+    @DeleteMapping("/users/{id}")
+    public UserResponseDto deleteUser(@PathVariable Long id, @RequestBody UserRequestDto userRequestDto ) {
+        log.info("선택한 일정이 삭제되었습니다.{}", id);
+        return userService.deleteUser(id, userRequestDto);
+    }
 }

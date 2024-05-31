@@ -50,7 +50,17 @@ public class UserService {
         return new UserResponseDto(user);
     }
 
+    //삭제 기능구현
+    public UserResponseDto deleteUser(Long id, UserRequestDto userRequestDto) {
+        User user = new User(userRequestDto);
+        userRepository.findById(id).orElseThrow(()->
+                new IllegalArgumentException("해당 댓글은 존재하지 않습니다.")
+        );
+        if(!(user.getSelectTodoId() == userRepository.findById(id).get().getSelectTodoId()) ){
+            throw new IllegalArgumentException("해당 id는 일치하지 않습니다.");
+        }
 
-
-
+        userRepository.deleteById(id);
+        return new UserResponseDto(user);
+    }
 }
