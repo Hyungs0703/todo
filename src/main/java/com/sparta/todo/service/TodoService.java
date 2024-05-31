@@ -26,10 +26,8 @@ public class TodoService {
 
     //선택조회
     public TodoResponseDto selectTodo(Long id){
-        Todo todo = todoRepository.findById(id).orElseThrow(()->
-                new IllegalArgumentException("해당 일정은 존재하지 않습니다.")
+        Todo todo =findById(id);
 
-        );
         return new TodoResponseDto(todo);
     }
 
